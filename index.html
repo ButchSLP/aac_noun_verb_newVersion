@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAC Noun + Verb - Enhanced Edition</title>
+    <script src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Audio Unlock Screen -->
+    <div id="audio-unlock-overlay" role="dialog" aria-labelledby="start-title">
+        <div class="start-card">
+            <h1 id="start-title" style="font-size: 3.2rem; margin-bottom: 10px;">🐶 Let's Build Sentences!</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9;">Watch the action and pick the words.</p>
+            <button class="pulse-button" id="start-btn" aria-label="Start the game">START</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="hidden">
+        <div class="loading-spinner"></div>
+        <p>Loading resources...</p>
+    </div>
+
+    <!-- Controls -->
+    <button id="fullscreen-btn" aria-label="Toggle fullscreen mode">⛶ Full Screen</button>
+    <button id="volume-btn" aria-label="Mute/Unmute sounds">🔊</button>
+
+    <!-- Celebration Overlay -->
+    <div id="celebration-overlay" role="alert" aria-live="polite">
+        <div class="celebration-text">Amazing Job!</div>
+        <img id="celebration-gif" src="images/dancing_cartoon.gif" alt="Celebration animation">
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <div id="stats-header" role="banner">
+            <span>Trial: <span id="current-trial">1</span> / <span id="total-trials">10</span></span>
+            <span>Score: <span id="score-val">0</span></span>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        
+        <div id="main-content">
+            <div id="gif-container">
+                <img id="trial-gif" src="" alt="Action to describe" />
+                <div id="image-loading" class="loading-spinner"></div>
+            </div>
+            
+            <div id="workspace">
+                <div id="drop-zone" 
+                     role="region" 
+                     aria-label="Drop zone for sentence building"
+                     aria-describedby="drop-zone-instructions">
+                </div>
+                <p id="drop-zone-instructions" class="sr-only">
+                    Drag two words here: who is doing the action and what they are doing
+                </p>
+                
+                <div class="bank" id="word-bank" role="list" aria-label="Available words"></div>
+                
+                <div id="feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+                
+                <div class="action-area">
+                    <button id="check-btn" class="game-btn primary">Check Answer</button>
+                    <button id="next-btn" class="game-btn success hidden">Next Trial →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="result-screen" class="hidden" role="main">
+        <h1 style="margin: 0; color: #2c3e50; font-size: 1.5rem;">Results Summary</h1>
+        <div style="font-size: 3rem; color: #3498db;" id="final-pct" aria-label="Final score percentage">0%</div>
+        <div style="flex-grow: 1; overflow-y: auto; margin-top: 10px;">
+            <table role="table" aria-label="Trial results">
+                <thead>
+                    <tr>
+                        <th scope="col">Trial</th>
+                        <th scope="col">Target Sentence</th>
+                        <th scope="col">Result</th>
+                    </tr>
+                </thead>
+                <tbody id="log-body"></tbody>
+            </table>
+        </div>
+        <button id="restart-btn" class="game-btn secondary" style="margin-top: 10px;">Restart</button>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="trials-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
